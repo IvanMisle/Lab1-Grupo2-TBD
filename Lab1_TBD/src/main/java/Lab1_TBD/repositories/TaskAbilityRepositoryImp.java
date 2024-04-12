@@ -1,7 +1,6 @@
 package Lab1_TBD.repositories;
 
-import Lab1_TBD.entities.RankingEntity;
-import Lab1_TBD.entities.Task_AbilityEntity;
+import Lab1_TBD.entities.TaskAbilityEntity;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
@@ -10,12 +9,12 @@ import org.sql2o.Sql2o;
 import java.util.List;
 
 @Repository
-public class Task_AbilityRepositoryImp implements Task_AbilityRepository{
+public class TaskAbilityRepositoryImp implements TaskAbilityRepository {
     @Autowired
     Sql2o sql2o;
 
     @Override
-    public void save(Task_AbilityEntity task_abilityEntity) {
+    public void save(TaskAbilityEntity task_abilityEntity) {
         String sql = "INSERT INTO task_ability VALUES (:id, :id_task_ability, :id_task)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).addParameter("id", task_abilityEntity.getId())
@@ -28,10 +27,10 @@ public class Task_AbilityRepositoryImp implements Task_AbilityRepository{
     }
 
     @Override
-    public List<Task_AbilityEntity> findAll() {
+    public List<TaskAbilityEntity> findAll() {
         String sql = "SELECT * FROM task_ability";
         try (Connection con = sql2o.open()) {
-            return con.createQuery(sql).executeAndFetch(Task_AbilityEntity.class);
+            return con.createQuery(sql).executeAndFetch(TaskAbilityEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;
@@ -39,12 +38,12 @@ public class Task_AbilityRepositoryImp implements Task_AbilityRepository{
     }
 
     @Override
-    public Task_AbilityEntity findById(Long id) {
+    public TaskAbilityEntity findById(Long id) {
         String sql = "SELECT * FROM task_ability WHERE id = :id";
         try (Connection con = sql2o.open()) {
             return con.createQuery(sql)
                     .addParameter("id", id)
-                    .executeAndFetchFirst(Task_AbilityEntity.class);
+                    .executeAndFetchFirst(TaskAbilityEntity.class);
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

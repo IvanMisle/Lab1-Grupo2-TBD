@@ -1,27 +1,27 @@
 package Lab1_TBD.services;
 
-import Lab1_TBD.entities.Task_AbilityEntity;
-import Lab1_TBD.repositories.Task_AbilityRepository;
+import Lab1_TBD.entities.TaskAbilityEntity;
+import Lab1_TBD.repositories.TaskAbilityRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-public class Task_AbilityService {
+public class TaskAbilityService {
     @Autowired
 
-    private Task_AbilityRepository task_abilityRepository;
+    private TaskAbilityRepository task_abilityRepository;
 
-    public void save(Task_AbilityEntity task_abilityEntity) {
+    public void save(TaskAbilityEntity task_abilityEntity) {
         task_abilityRepository.save(task_abilityEntity);
     }
 
-    public List<Task_AbilityEntity> getAll() {
+    public List<TaskAbilityEntity> getAll() {
         return task_abilityRepository.findAll();
     }
 
-    public Task_AbilityEntity getById(Long id) {
+    public TaskAbilityEntity getById(Long id) {
         return task_abilityRepository.findById(id);
     }
 

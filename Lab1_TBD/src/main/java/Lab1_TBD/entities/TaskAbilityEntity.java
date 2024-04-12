@@ -1,6 +1,6 @@
 package Lab1_TBD.entities;
 
-public class Task_AbilityEntity {
+public class TaskAbilityEntity {
 
     private Long id;
     private Long id_task_ability;
@@ -8,7 +8,7 @@ public class Task_AbilityEntity {
 
     //Constructor
 
-    public Task_AbilityEntity(Long id, Long id_task_ability, Long id_task) {
+    public TaskAbilityEntity(Long id, Long id_task_ability, Long id_task) {
         this.id = id;
         this.id_task_ability = id_task_ability;
         this.id_task = id_task;
