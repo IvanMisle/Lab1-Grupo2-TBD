@@ -1,5 +1,5 @@
 -- Insertar datos en la tabla ranking
-INSERT INTO ranking (id, id_task, id_volunteer, level_ranking) VALUES
+INSERT INTO Ranking (id, id_task, id_volunteer, level_ranking) VALUES
 (1, 1, 1, 5),
 (2, 2, 2, 4),
 (3, 3, 3, 3),
@@ -32,7 +32,7 @@ INSERT INTO ranking (id, id_task, id_volunteer, level_ranking) VALUES
 (30, 5, 5, 1);
 
 -- Insertar datos en la tabla institution
-INSERT INTO institution (id, name) VALUES
+INSERT INTO Institution (id, name) VALUES
 (1, 'Hospital General'),
 (2, 'Cruz Roja'),
 (3, 'Protección Civil'),
@@ -65,7 +65,7 @@ INSERT INTO institution (id, name) VALUES
 (30, 'Unidad de Respuesta de Crisis');
 
 -- Insertar datos en la tabla volunteer
-INSERT INTO volunteer (id, disponibility, name, password, age) VALUES
+INSERT INTO Volunteer (id, disponibility, name, password, age) VALUES
 (1, true, 'Juan Pérez', 'contraseña123', 25),
 (2, true, 'María García', 'clave456', 30),
 (3, false, 'Carlos Martínez', 'segura789', 28),
@@ -98,7 +98,7 @@ INSERT INTO volunteer (id, disponibility, name, password, age) VALUES
 (30, false, 'Juan Pablo García', '123321', 33);
 
 -- Insertar datos en la tabla vol_abillity
-INSERT INTO volAbillity (id, id_volunteer, id_ability) VALUES
+INSERT INTO VolAbillity (id, id_volunteer, id_ability) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 2, 1),
@@ -131,7 +131,7 @@ INSERT INTO volAbillity (id, id_volunteer, id_ability) VALUES
 (30, 15, 4);
 
 -- Insertar datos en la tabla emergency
-INSERT INTO emergency (id, id_institution, status, name, description, coordinator_responsible) VALUES
+INSERT INTO Emergency (id, id_institution, status, name, description, coordinator_responsible) VALUES
 (1, 1, true, 'Accidente de tráfico', 'Choque entre dos vehículos en la autopista', 'Laura Gómez'),
 (2, 2, false, 'Inundación', 'Desbordamiento del río debido a las fuertes lluvias', 'Roberto Martín'),
 (3, 3, true, 'Incendio en fábrica', 'Se ha declarado un incendio en una fábrica de productos químicos', 'Javier Pérez'),
@@ -164,7 +164,7 @@ INSERT INTO emergency (id, id_institution, status, name, description, coordinato
 (30, 2, false, 'Incendio forestal', 'Incendio forestal en área protegida', 'María Gómez');
 
 -- Insertar datos en la tabla eme_abillity
-INSERT INTO emeAbillity (id, id_emergency, id_abillity) VALUES
+INSERT INTO EmeAbillity (id, id_emergency, id_abillity) VALUES
 (1, 1, 1),
 (2, 1, 2),
 (3, 2, 3),
@@ -197,7 +197,7 @@ INSERT INTO emeAbillity (id, id_emergency, id_abillity) VALUES
 (30, 15, 15);
 
 -- Insertar datos en la tabla abillity
-INSERT INTO abillity (id, name) VALUES
+INSERT INTO Abillity (id, name) VALUES
 (1, 'Primeros Auxilios'),
 (2, 'Manejo de Extintores'),
 (3, 'Rescate Acuático'),
@@ -230,7 +230,7 @@ INSERT INTO abillity (id, name) VALUES
 (30, 'Manejo de Equipos de Comunicaciones');
 
 -- Insertar datos en la tabla task
-INSERT INTO task (id, name_task, description, id_emergency, id_status_task) VALUES
+INSERT INTO Task (id, name_task, description, id_emergency, id_status_task) VALUES
 (1, 'Evacuación de heridos', 'Evacuar a los heridos del lugar del accidente', 1, 1),
 (2, 'Control de inundación', 'Tomar medidas para controlar la inundación', 2, 2),
 (3, 'Control de incendio', 'Apagar el incendio y prevenir su propagación', 3, 1),
@@ -263,7 +263,7 @@ INSERT INTO task (id, name_task, description, id_emergency, id_status_task) VALU
 (30, 'Planificación de respuesta ante emergencias', 'Elaborar y coordinar planes de respuesta ante diferentes tipos de emergencias', 30, 1);
 
 -- Insertar datos en la tabla task_abillity
-INSERT INTO taskAbillity (id, id_eme_abillity, id_task) VALUES
+INSERT INTO TaskAbillity (id, id_eme_abillity, id_task) VALUES
 (1, 1, 1),
 (2, 2, 2),
 (3, 3, 3),
