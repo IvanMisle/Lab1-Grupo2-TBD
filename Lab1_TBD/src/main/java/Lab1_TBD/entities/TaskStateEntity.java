@@ -1,10 +1,11 @@
 package Lab1_TBD.entities;
 
-public class TaskState {
+public class TaskStateEntity {
     private Long id;
     private boolean state;
 
-    public TaskState(Long id, boolean state) {
+
+    public TaskStateEntity(Long id, boolean state) {
         this.id = id;
         this.state = state;
     }

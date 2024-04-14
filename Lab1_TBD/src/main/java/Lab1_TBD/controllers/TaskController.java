@@ -37,7 +37,4 @@ public class TaskController {
         var isDeleted = taskService.deleteTask(id);
         return  ResponseEntity.ok(isDeleted);
     }
-
-
-
 }
