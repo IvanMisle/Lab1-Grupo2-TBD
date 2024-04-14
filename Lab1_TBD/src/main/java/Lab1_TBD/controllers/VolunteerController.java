@@ -7,9 +7,11 @@ import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RestController
+@RequestMapping("/volunteer")
 public class VolunteerController{
 
     private final VolunteerService volunteerService;
+
     VolunteerController(VolunteerService volunteerService) {
         this.volunteerService = volunteerService;
     }
@@ -24,6 +26,12 @@ public class VolunteerController{
     public ResponseEntity<VolunteerEntity> getVolunteerById(@PathVariable Long id) {
         VolunteerEntity newVolunteer = volunteerService.getVolunteerById(id);
         return ResponseEntity.ok(newVolunteer);
+    }
+
+    @GetMapping("/volunteer")
+    public ResponseEntity<VolunteerEntity> getAllVolunteer() {
+        List<VolunteerEntity> listVolunteer = volunteerService.getAllVolunteer();
+        return ResponseEntity.ok(listVolunteer);
     }
 
     @PutMapping("/volunteer/{id}")
