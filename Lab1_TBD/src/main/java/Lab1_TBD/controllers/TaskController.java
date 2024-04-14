@@ -24,7 +24,7 @@ public class TaskController {
         return ResponseEntity.ok(newTask);
     }
 
-    @PutMapping("/taks/{id}")
+    @PutMapping("/tasks/{id}")
     public ResponseEntity<TaskEntity> updateTask(@PathVariable Long id,
                                                  @RequestBody TaskEntity task){
         task.setId(id);
