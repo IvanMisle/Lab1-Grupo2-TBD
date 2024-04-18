@@ -5,13 +5,14 @@ import Lab1_TBD.services.VolunteerService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+import java.util.List;
+
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/volunteer")
-public class VolunteerController{
+public class VolunteerController {
 
     private final VolunteerService volunteerService;
-
     VolunteerController(VolunteerService volunteerService) {
         this.volunteerService = volunteerService;
     }
@@ -29,15 +30,14 @@ public class VolunteerController{
     }
 
     @GetMapping("/volunteer")
-    public ResponseEntity<VolunteerEntity> getAllVolunteer() {
+    public ResponseEntity<List<VolunteerEntity>> getAllVolunteer() {
         List<VolunteerEntity> listVolunteer = volunteerService.getAllVolunteer();
         return ResponseEntity.ok(listVolunteer);
     }
 
-    @PutMapping("/volunteer/{id}")
-    public ResponseEntity<VolunteerEntity> updateVolunteer(@PathVariable Long id, @RequestBody VolunteerEntity volunteer) {
-        volunteer.setId(id);
-        EmergencyEntity updatedVolunteer = volunteerService.updateVolunteer(volunteer);
+    @PutMapping("/volunteer")
+    public ResponseEntity<VolunteerEntity> updateVolunteer(@RequestBody VolunteerEntity volunteer) {
+        VolunteerEntity updatedVolunteer = volunteerService.updateVolunteer(volunteer);
         return ResponseEntity.ok(updatedVolunteer);
     }
 

@@ -14,15 +14,17 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository {
     Sql2o sql2o;
 
     @Override
-    public void save(TaskAbilityEntity task_abilityEntity) {
-        String sql = "INSERT INTO task_ability VALUES (:id, :id_task_ability, :id_task)";
+    public TaskAbilityEntity save(TaskAbilityEntity task_abilityEntity) {
+        String sql = "INSERT INTO task_ability VALUES (:id, :id_eme_ability, :id_task)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).addParameter("id", task_abilityEntity.getId())
-                    .addParameter("id_task_ability", task_abilityEntity.getId_task_ability())
+                    .addParameter("id_eme_ability", task_abilityEntity.getId_eme_ability())
                     .addParameter("id_task", task_abilityEntity.getId_task())
                     .executeUpdate();
+            return task_abilityEntity;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -51,14 +53,34 @@ public class TaskAbilityRepositoryImp implements TaskAbilityRepository {
     }
 
     @Override
-    public void deleteById(long id) {
+    public boolean deleteById(Long id) {
         String sql = "DELETE FROM task_ability WHERE id = :id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public TaskAbilityEntity update(TaskAbilityEntity task_abilityEntity) {
+        String sql = "UPDATE task_ability " +
+                "SET id_eme_ability = :id_eme_ability, id_task = :id_task " +
+                "WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("id_eme_ability", task_abilityEntity.getId_eme_ability())
+                    .addParameter("id_task", task_abilityEntity.getId_task())
+                    .addParameter("id", task_abilityEntity.getId())
+                    .executeUpdate();
+            return task_abilityEntity;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

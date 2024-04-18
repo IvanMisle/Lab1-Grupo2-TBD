@@ -2,7 +2,9 @@ package Lab1_TBD.services;
 
 import Lab1_TBD.entities.EmeAbilityEntity;
 import Lab1_TBD.repositories.EmeAbilityRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EmeAbilityService {
 
     private final EmeAbilityRepository emeAbilityRepository;

@@ -11,6 +11,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/task_ability")
+@CrossOrigin("*")
 public class TaskAbilityController {
 
     @Autowired
@@ -29,12 +30,19 @@ public class TaskAbilityController {
     }
 
     @PostMapping("/")
-    public void addTask_Ability(@RequestBody TaskAbilityEntity task_ability) {
-        task_abilityService.save(task_ability);
+    public ResponseEntity<TaskAbilityEntity> addTask_Ability(@RequestBody TaskAbilityEntity task_ability) {
+        TaskAbilityEntity newTaskAbility = task_abilityService.save(task_ability);
+        return ResponseEntity.ok(newTaskAbility);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<TaskAbilityEntity> updateTask_Ability(@RequestBody TaskAbilityEntity task_ability) {
+        TaskAbilityEntity newTaskAbility = task_abilityService.update(task_ability);
+        return ResponseEntity.ok(newTaskAbility);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteTask_Ability(@PathVariable Long id) {
-        task_abilityService.delete(id);
+    public boolean deleteTask_Ability(@PathVariable Long id) {
+        return task_abilityService.delete(id);
     }
 }

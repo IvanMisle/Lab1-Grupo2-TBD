@@ -14,16 +14,18 @@ public class RankingRepositoryImp implements RankingRepository {
     Sql2o sql2o;
 
     @Override
-    public void save(RankingEntity rankingEntity) {
-        String sql = "INSERT INTO ranking VALUES (:id, :level_ranking, :id_tarea, :id_voluntario)";
+    public RankingEntity save(RankingEntity rankingEntity) {
+        String sql = "INSERT INTO ranking VALUES (:id, :level_ranking, :id_task, :id_volunteer)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).addParameter("id", rankingEntity.getId())
                     .addParameter("level_ranking", rankingEntity.getLevel_ranking())
-                    .addParameter("id_tarea", rankingEntity.getId_tarea())
-                    .addParameter("id_voluntario", rankingEntity.getId_voluntario())
+                    .addParameter("id_task", rankingEntity.getId_task())
+                    .addParameter("id_volunteer", rankingEntity.getId_volunteer())
                     .executeUpdate();
+            return rankingEntity;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -52,14 +54,35 @@ public class RankingRepositoryImp implements RankingRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public boolean deleteById(Long id) {
         String sql = "DELETE FROM ranking WHERE id = :id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public RankingEntity update(RankingEntity rankingEntity) {
+        String sql = "UPDATE ranking " +
+                "SET level_ranking = :level_ranking, id_task = :id_task, id_volunteer = :id_volunteer" +
+                " WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("level_ranking", rankingEntity.getLevel_ranking())
+                    .addParameter("id_task", rankingEntity.getId_task())
+                    .addParameter("id_volunteer", rankingEntity.getId_volunteer())
+                    .addParameter("id", rankingEntity.getId())
+                    .executeUpdate();
+            return rankingEntity;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

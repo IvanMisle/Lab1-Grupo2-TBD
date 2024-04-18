@@ -4,8 +4,8 @@ import Lab1_TBD.entities.EmeAbilityEntity;
 
 public interface EmeAbilityRepository {
 
-    public EmeAbilityEntity save(EmeAbilityEntity eme_ability);
-    public EmeAbilityEntity findById(Long id);
-    public EmeAbilityEntity update(EmeAbilityEntity eme_ability);
-    public boolean deleteById(Long id);
+    EmeAbilityEntity save(EmeAbilityEntity eme_ability);
+    EmeAbilityEntity findById(Long id);
+    EmeAbilityEntity update(EmeAbilityEntity eme_ability);
+    boolean deleteById(Long id);
 }

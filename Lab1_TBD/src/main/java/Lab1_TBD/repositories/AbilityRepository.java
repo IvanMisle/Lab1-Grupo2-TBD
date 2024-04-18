@@ -6,12 +6,13 @@ import java.util.List;
 
 public interface AbilityRepository {
 
-    void save(AbilityEntity abilityEntity);
+    AbilityEntity save(AbilityEntity abilityEntity);
 
     List<AbilityEntity> findAll();
 
-    AbilityEntity findById(long id);
+    AbilityEntity findById(Long id);
 
-    void deleteById(Long id);
+    boolean deleteById(Long id);
 
+    AbilityEntity update(AbilityEntity abilityEntity);
 }

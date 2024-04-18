@@ -14,14 +14,16 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
     Sql2o sql2o;
 
     @Override
-    public void save(InstitutionEntity institutionEntity) {
+    public InstitutionEntity save(InstitutionEntity institutionEntity) {
         String sql = "INSERT INTO institution VALUES (:id, :name)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).addParameter("id", institutionEntity.getId())
                     .addParameter("name", institutionEntity.getName())
                     .executeUpdate();
+            return institutionEntity;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return null;
         }
     }
 
@@ -50,14 +52,31 @@ public class InstitutionRepositoryImp implements InstitutionRepository {
     }
 
     @Override
-    public void deleteById(Long id) {
+    public boolean deleteById(Long id) {
         String sql = "DELETE FROM institution WHERE id = :id";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql)
                     .addParameter("id", id)
                     .executeUpdate();
+            return true;
         } catch (Exception e) {
             System.out.println(e.getMessage());
+            return false;
+        }
+    }
+
+    @Override
+    public InstitutionEntity update(InstitutionEntity institutionEntity) {
+        String sql = "UPDATE institution SET name = :name WHERE id = :id";
+        try (Connection con = sql2o.open()) {
+            con.createQuery(sql)
+                    .addParameter("name", institutionEntity.getName())
+                    .addParameter("id", institutionEntity.getId())
+                    .executeUpdate();
+            return institutionEntity;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

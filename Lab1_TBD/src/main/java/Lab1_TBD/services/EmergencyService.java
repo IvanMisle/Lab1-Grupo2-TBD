@@ -2,7 +2,9 @@ package Lab1_TBD.services;
 
 import Lab1_TBD.entities.EmergencyEntity;
 import Lab1_TBD.repositories.EmergencyRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class EmergencyService {
 
     private final EmergencyRepository emergencyRepository;

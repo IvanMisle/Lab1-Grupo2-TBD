@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/institution")
+@CrossOrigin("*")
 public class InstitutionController {
     @Autowired
     private InstitutionService institutionService;
@@ -27,12 +28,19 @@ public class InstitutionController {
     }
 
     @PostMapping("/")
-    public void addInstitution(@RequestBody InstitutionEntity institution) {
-        institutionService.save(institution);
+    public ResponseEntity<InstitutionEntity> addInstitution(@RequestBody InstitutionEntity institution) {
+        InstitutionEntity newInstitution = institutionService.save(institution);
+        return ResponseEntity.ok(newInstitution);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<InstitutionEntity> updateInstitution(@RequestBody InstitutionEntity institution) {
+        InstitutionEntity newInstitution = institutionService.update(institution);
+        return ResponseEntity.ok(newInstitution);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteInstitution(@PathVariable Long id) {
-        institutionService.delete(id);
+    public boolean deleteInstitution(@PathVariable Long id) {
+        return institutionService.delete(id);
     }
 }

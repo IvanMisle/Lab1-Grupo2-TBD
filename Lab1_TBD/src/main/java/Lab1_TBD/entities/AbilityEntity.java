@@ -4,16 +4,16 @@ public class AbilityEntity {
     private Long id;
     private String name;
 
-  //Constructores
+    //Constructores
     public AbilityEntity() {
     }
+
     public AbilityEntity(Long id, String name) {
         this.id = id;
         this.name = name;
     }
 
     //Getters y Setters
-
     public Long getId() {
         return id;
     }

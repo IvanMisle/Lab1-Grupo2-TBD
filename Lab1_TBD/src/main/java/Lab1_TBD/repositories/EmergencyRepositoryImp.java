@@ -20,7 +20,7 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
                             "values (:id, :id_institution, :state, :name, :description, :responsible_coordinator)")
                     .addParameter("id", emergency.getId())
                     .addParameter("id_institution", emergency.getId_institution())
-                    .addParameter("state", emergency.getState())
+                    .addParameter("state", emergency.isState())
                     .addParameter("name", emergency.getName())
                     .addParameter("description", emergency.getDescription())
                     .addParameter("responsible_coordinator", emergency.getResponsible_coordinator())
@@ -47,11 +47,12 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
     @Override
     public EmergencyEntity update(EmergencyEntity emergency) {
         try(Connection con = sql2o.open()){
-            con.createQuery("UPDATE emergency SET id = :id, id_institution = :id_institution, state = :state," +
-                    " name = :name, description = :description, responsible_coordinator = :responsible_coordinator")
+            con.createQuery("UPDATE emergency SET id_institution = :id_institution, state = :state," +
+                    " name = :name, description = :description, responsible_coordinator = :responsible_coordinator " +
+                            "WHERE id = :id")
                     .addParameter("id", emergency.getId())
                     .addParameter("id_institution", emergency.getId_institution())
-                    .addParameter("state", emergency.getState())
+                    .addParameter("state", emergency.isState())
                     .addParameter("name", emergency.getName())
                     .addParameter("description", emergency.getDescription())
                     .addParameter("responsible_coordinator", emergency.getResponsible_coordinator())

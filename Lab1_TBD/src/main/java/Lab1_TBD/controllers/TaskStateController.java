@@ -1,19 +1,19 @@
 package Lab1_TBD.controllers;
 
-import Lab1_TBD.entities.TaskEntity;
 import Lab1_TBD.entities.TaskStateEntity;
 import Lab1_TBD.services.TaskStateService;
 import org.springframework.http.ResponseEntity;
-import org.springframework.scheduling.config.Task;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin
 @RequestMapping("/task_state")
+@RestController
 public class TaskStateController {
     private TaskStateService taskStateService;
     TaskStateController(TaskStateService taskStateService){
         this.taskStateService = taskStateService;
     }
+
     @PostMapping("/tasks_states")
     public ResponseEntity<TaskStateEntity> saveEntity(@RequestBody TaskStateEntity taskState){
         TaskStateEntity newTaskState = taskStateService.saveTaskState(taskState);

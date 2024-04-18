@@ -20,11 +20,15 @@ public class RankingService {
         return rankingRepository.findAll();
     }
 
-    public void save(RankingEntity rankingEntity) {
-        rankingRepository.save(rankingEntity);
+    public RankingEntity save(RankingEntity rankingEntity) {
+        return rankingRepository.save(rankingEntity);
     }
 
-    public void delete(Long id) {
-        rankingRepository.deleteById(id);
+    public boolean delete(Long id) {
+        return rankingRepository.deleteById(id);
+    }
+
+    public RankingEntity update(RankingEntity rankingEntity) {
+        return rankingRepository.update(rankingEntity);
     }
 }

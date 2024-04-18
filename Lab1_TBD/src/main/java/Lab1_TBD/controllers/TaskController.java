@@ -5,14 +5,15 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 
-@CrossOrigin
+@CrossOrigin("*")
 @RequestMapping("/task")
+@RestController
 public class TaskController {
     private TaskService taskService;
-
     TaskController(TaskService taskService){
         this.taskService = taskService;
     }
+
     @PostMapping("/tasks")
     public ResponseEntity<TaskEntity> saveEntity(@RequestBody TaskEntity task){
         TaskEntity newTask = taskService.saveTask(task);

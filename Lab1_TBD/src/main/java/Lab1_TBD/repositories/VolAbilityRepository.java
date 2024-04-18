@@ -5,8 +5,8 @@ import Lab1_TBD.entities.VolAbilityEntity;
 import java.util.List;
 
 public interface VolAbilityRepository {
-    public void save(VolAbilityEntity volAbilityEntity);
-    public List<VolAbilityEntity> findAll();
-    public VolAbilityEntity findById(Long id);
-    public void deleteById(Long id);
+    VolAbilityEntity save(VolAbilityEntity volAbilityEntity);
+    VolAbilityEntity update(VolAbilityEntity volAbilityEntity);
+    VolAbilityEntity findById(Long id);
+    boolean deleteById(Long id);
 }

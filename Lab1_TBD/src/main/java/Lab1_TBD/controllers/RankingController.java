@@ -10,6 +10,7 @@ import java.util.List;
 
 @RestController()
 @RequestMapping("/ranking")
+@CrossOrigin("*")
 public class RankingController {
     @Autowired
     private RankingService rankingService;
@@ -27,12 +28,19 @@ public class RankingController {
     }
 
     @PostMapping("/")
-    public void addRanking(@RequestBody RankingEntity ranking) {
-        rankingService.save(ranking);
+    public ResponseEntity<RankingEntity> addRanking(@RequestBody RankingEntity ranking) {
+        RankingEntity newRanking = rankingService.save(ranking);
+        return ResponseEntity.ok(newRanking);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<RankingEntity> updateRanking(@RequestBody RankingEntity ranking) {
+        RankingEntity newRanking = rankingService.update(ranking);
+        return ResponseEntity.ok(newRanking);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteRanking(@PathVariable Long id) {
-        rankingService.delete(id);
+    public boolean deleteRanking(@PathVariable Long id) {
+        return rankingService.delete(id);
     }
 }

@@ -4,12 +4,16 @@ public class TaskStateEntity {
     private Long id;
     private boolean state;
 
+    //Constructores
+    public TaskStateEntity() {
+    }
 
     public TaskStateEntity(Long id, boolean state) {
         this.id = id;
         this.state = state;
     }
 
+    //Getters y Setters
     public Long getId() {
         return id;
     }

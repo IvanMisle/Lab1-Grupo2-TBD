@@ -15,11 +15,11 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository{
     @Override
     public VolAbilityEntity save(VolAbilityEntity volAbility) {
         try (Connection con = sql2o.open()) {
-            con.createQuery("INSERT INTO volAbility (id, id_volunteer, id_ability)" +
+            con.createQuery("INSERT INTO vol_ability (id, id_volunteer, id_ability)" +
                     "values (:id, :id_volunteer, :id_ability)")
                     .addParameter("id", volAbility.getId())
-                    .addParameter("id_volunteer", volAbility.getIdVolunteer())
-                    .addParameter("id_ability", volAbility.getIdAbility())
+                    .addParameter("id_volunteer", volAbility.getId_volunteer())
+                    .addParameter("id_ability", volAbility.getId_ability())
                     .executeUpdate().getKey();
             return volAbility;
         } catch(Exception e) {
@@ -30,7 +30,7 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository{
     @Override
     public VolAbilityEntity findById(Long id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT *  FROM volAbility WHERE id = :id")
+            return con.createQuery("SELECT *  FROM vol_ability WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(VolAbilityEntity.class);
         } catch(Exception e) {
@@ -41,10 +41,11 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository{
     @Override
     public VolAbilityEntity update(VolAbilityEntity volAbility) {
         try (Connection con = sql2o.open()) {
-            con.createQuery("UPDATE volAbility SET id = :id, id_volunteer = :id_volunteer, id_ability = :id_ability")
+            con.createQuery("UPDATE vol_ability SET id_volunteer = :id_volunteer, id_ability = :id_ability " +
+                            "WHERE id = :id")
             .addParameter("id", volAbility.getId())
-            .addParameter("id_volunteer", volAbility.getIdVolunteer())
-            .addParameter("id_ability", volAbility.getIdAbility())
+            .addParameter("id_volunteer", volAbility.getId_volunteer())
+            .addParameter("id_ability", volAbility.getId_ability())
             .executeUpdate();
             return volAbility;
         } catch(Exception e) {
@@ -56,7 +57,7 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository{
     public boolean deleteById(Long id) {
         int deleteVolAbility;
         try (Connection con = sql2o.open()) {
-            deleteVolAbility =  con.createQuery("DELETE FROM volAbility WHERE id = :id")
+            deleteVolAbility =  con.createQuery("DELETE FROM vol_ability WHERE id = :id")
                     .addParameter("id", id)
                     .executeUpdate().getResult();
             return deleteVolAbility == 1;

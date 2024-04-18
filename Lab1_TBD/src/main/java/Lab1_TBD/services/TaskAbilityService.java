@@ -13,8 +13,8 @@ public class TaskAbilityService {
 
     private TaskAbilityRepository task_abilityRepository;
 
-    public void save(TaskAbilityEntity task_abilityEntity) {
-        task_abilityRepository.save(task_abilityEntity);
+    public TaskAbilityEntity save(TaskAbilityEntity task_abilityEntity) {
+        return task_abilityRepository.save(task_abilityEntity);
     }
 
     public List<TaskAbilityEntity> getAll() {
@@ -25,7 +25,11 @@ public class TaskAbilityService {
         return task_abilityRepository.findById(id);
     }
 
-    public void delete(long id) {
-        task_abilityRepository.deleteById(id);
+    public boolean delete(Long id) {
+        return task_abilityRepository.deleteById(id);
+    }
+
+    public TaskAbilityEntity update(TaskAbilityEntity task_abilityEntity) {
+        return task_abilityRepository.update(task_abilityEntity);
     }
 }

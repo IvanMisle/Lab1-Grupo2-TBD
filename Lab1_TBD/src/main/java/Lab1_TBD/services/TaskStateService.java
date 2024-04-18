@@ -1,7 +1,9 @@
 package Lab1_TBD.services;
 import Lab1_TBD.entities.TaskStateEntity;
 import Lab1_TBD.repositories.TaskStateRepository;
+import org.springframework.stereotype.Service;
 
+@Service
 public class TaskStateService {
     private final TaskStateRepository taskStateRepository;
     TaskStateService(TaskStateRepository taskStateRepository){this.taskStateRepository = taskStateRepository;}

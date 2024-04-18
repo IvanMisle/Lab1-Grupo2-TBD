@@ -15,7 +15,7 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
     @Override
     public EmeAbilityEntity save(EmeAbilityEntity emeAbility) {
         try (Connection con = sql2o.open()) {
-            con.createQuery("INSERT INTO emeAbility (id, id_emergency, id_ability)" +
+            con.createQuery("INSERT INTO eme_ability (id, id_emergency, id_ability)" +
                     "values (:id, :id_emergency, :id_ability)")
                     .addParameter("id", emeAbility.getId())
                     .addParameter("id_emergency", emeAbility.getId_emergency())
@@ -30,7 +30,7 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
     @Override
     public EmeAbilityEntity findById(Long id) {
         try (Connection con = sql2o.open()) {
-            return con.createQuery("SELECT *  FROM emeAbility WHERE id = :id")
+            return con.createQuery("SELECT *  FROM eme_ability WHERE id = :id")
                     .addParameter("id", id)
                     .executeAndFetchFirst(EmeAbilityEntity.class);
         } catch(Exception e) {
@@ -41,7 +41,8 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
     @Override
     public EmeAbilityEntity update(EmeAbilityEntity emeAbility) {
         try (Connection con = sql2o.open()) {
-            con.createQuery("UPDATE emeAbility SET id = :id, id_emergency = :id_emergency, id_ability = :id_ability")
+            con.createQuery("UPDATE eme_ability SET id_emergency = :id_emergency, id_ability = :id_ability " +
+                            "WHERE id = :id")
             .addParameter("id", emeAbility.getId())
             .addParameter("id_emergency", emeAbility.getId_emergency())
             .addParameter("id_ability", emeAbility.getId_ability())
@@ -56,7 +57,7 @@ public class EmeAbilityRepositoryImp implements EmeAbilityRepository{
     public boolean deleteById(Long id) {
         int deleteEmeAbility;
         try (Connection con = sql2o.open()) {
-            deleteEmeAbility =  con.createQuery("DELETE FROM emeAbility WHERE id = :id")
+            deleteEmeAbility =  con.createQuery("DELETE FROM eme_ability WHERE id = :id")
                     .addParameter("id", id)
                     .executeUpdate().getResult();
             return deleteEmeAbility == 1;

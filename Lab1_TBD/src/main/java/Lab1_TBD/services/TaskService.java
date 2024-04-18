@@ -3,9 +3,9 @@ package Lab1_TBD.services;
 
 import Lab1_TBD.entities.TaskEntity;
 import Lab1_TBD.repositories.TaskRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
-
+@Service
 public class TaskService {
 
 

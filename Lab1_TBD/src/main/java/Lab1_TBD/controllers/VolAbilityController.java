@@ -5,13 +5,12 @@ import Lab1_TBD.services.VolAbilityService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-@CrossOrigin
+@CrossOrigin("*")
 @RestController
 @RequestMapping("/volAbility")
-public class VolAbilityController{
+public class VolAbilityController {
 
     private final VolAbilityService volAbilityService;
-
     VolAbilityController(VolAbilityService volAbilityService) {
         this.volAbilityService = volAbilityService;
     }
@@ -28,10 +27,10 @@ public class VolAbilityController{
         return ResponseEntity.ok(newVolAbility);
     }
 
-    @GetMapping("/volAbility")
-    public ResponseEntity<VolAbilityEntity> getAllVolAbility() {
-        List<VolAbilityEntity> listVolAbility = volAbilityService.getAllVolAbility();
-        return ResponseEntity.ok(listVolAbility);
+    @PutMapping("/volAbility")
+    public ResponseEntity<VolAbilityEntity> updateVolAbility(@RequestBody VolAbilityEntity volAbility) {
+        VolAbilityEntity newVolAbility = volAbilityService.updateVolAbility(volAbility);
+        return ResponseEntity.ok(newVolAbility);
     }
 
     @DeleteMapping("/volAbility/{id}")

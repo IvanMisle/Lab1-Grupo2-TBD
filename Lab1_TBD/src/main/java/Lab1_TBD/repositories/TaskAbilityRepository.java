@@ -8,13 +8,13 @@ import java.util.List;
 
 public interface TaskAbilityRepository {
 
-    void save(TaskAbilityEntity task_abilityEntity);
+    TaskAbilityEntity save(TaskAbilityEntity task_abilityEntity);
 
     List<TaskAbilityEntity> findAll();
 
     TaskAbilityEntity findById(Long id);
 
-    void deleteById(long id);
+    boolean deleteById(Long id);
 
-
+    TaskAbilityEntity update(TaskAbilityEntity task_abilityEntity);
 }

@@ -2,9 +2,11 @@ package Lab1_TBD.services;
 
 import Lab1_TBD.entities.VolunteerEntity;
 import Lab1_TBD.repositories.VolunteerRepository;
-import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
+import java.util.List;
 
+@Service
 public class VolunteerService {
 
     private  VolunteerRepository volunteerRepository;

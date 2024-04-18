@@ -8,15 +8,19 @@ public class TaskEntity {
     private Long id_emergency;
     private Long id_task_state;
 
-
-    public TaskEntity(Long id, String name_task, String description, Long id_emergency, Long id_task_state) {
-        this.id = id;
-        this.name_task = name_task;
-        this.description = description;
-        this.id_emergency = id_emergency;
-        this.id_task_state = id_task_state;
+    //Constructores
+    public TaskEntity() {
     }
 
+    public TaskEntity(Long id, Long id_task_state, String description, Long id_emergency, String name_task) {
+        this.id = id;
+        this.id_task_state = id_task_state;
+        this.description = description;
+        this.id_emergency = id_emergency;
+        this.name_task = name_task;
+    }
+
+    //Getters y Setters
     public Long getId() {
         return id;
     }
@@ -25,20 +29,12 @@ public class TaskEntity {
         this.id = id;
     }
 
-    public String getName_task() {
-        return name_task;
+    public Long getId_task_state() {
+        return id_task_state;
     }
 
-    public void setName_task(String name_task) {
-        this.name_task = name_task;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
+    public void setId_task_state(Long id_task_state) {
+        this.id_task_state = id_task_state;
     }
 
     public Long getId_emergency() {
@@ -49,11 +45,19 @@ public class TaskEntity {
         this.id_emergency = id_emergency;
     }
 
-    public Long getId_task_state() {
-        return id_task_state;
+    public String getDescription() {
+        return description;
     }
 
-    public void setId_task_state(Long id_task_state) {
-        this.id_task_state = id_task_state;
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getName_task() {
+        return name_task;
+    }
+
+    public void setName_task(String name_task) {
+        this.name_task = name_task;
     }
 }

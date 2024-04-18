@@ -11,11 +11,12 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/ability")
+@CrossOrigin("*")
 public class AbilityController {
 
-@Autowired
-
+    @Autowired
     private AbilityService abilityService;
+
     @GetMapping("/{id}")
     public ResponseEntity<AbilityEntity> getAbility(@PathVariable Long id) {
         AbilityEntity ability = abilityService.getById(id);
@@ -29,18 +30,19 @@ public class AbilityController {
     }
 
     @PostMapping("/")
-    public void addAbility(@RequestBody AbilityEntity ability) {
-        abilityService.save(ability);
+    public ResponseEntity<AbilityEntity> addAbility(@RequestBody AbilityEntity ability) {
+        AbilityEntity newAbilityEntity = abilityService.save(ability);
+        return ResponseEntity.ok(newAbilityEntity);
+    }
+
+    @PutMapping("/")
+    public ResponseEntity<AbilityEntity> updateAbility(@RequestBody AbilityEntity ability) {
+        AbilityEntity newAbilityEntity = abilityService.update(ability);
+        return ResponseEntity.ok(newAbilityEntity);
     }
 
     @DeleteMapping("/{id}")
-    public void deleteAbility(@PathVariable Long id) {
-        abilityService.delete(id);
+    public boolean deleteAbility(@PathVariable Long id) {
+        return abilityService.delete(id);
     }
-}
-
-
-
-
-
 }
