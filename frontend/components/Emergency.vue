@@ -1,7 +1,7 @@
 <template>
     <nuxt-link :to="'/emergencys/' + id">
         <div class = "emergency">
-            <p>{{ id }}. {{ name }} | Estado: {{ state ? 'Activa' : 'Desactiva' }}</p>
+            <p>{{ id }}. {{ name }}</p>
         </div>
     </nuxt-link>
 </template>
@@ -11,7 +11,7 @@
     
 export default {
     name: 'Emergency',
-    props: ['id', 'name','state']
+    props: ['id', 'name']
 }
 </script>
 

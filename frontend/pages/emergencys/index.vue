@@ -28,6 +28,14 @@ export default{
             emergencys:[]
         }
     },
+
+    computed: {
+    activeEmergencys() {
+      return this.emergencys.filter(emergency => emergency.state !== false);
+        }
+    },
+
+
     async created(){
         try {
             const res = await axios.get('http://localhost:8081/emergencies');
