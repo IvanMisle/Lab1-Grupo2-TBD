@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 @Repository
 public class EmergencyRepositoryImp implements EmergencyRepository{
 
@@ -75,6 +77,30 @@ public class EmergencyRepositoryImp implements EmergencyRepository{
         } catch(Exception e) {
             System.out.println(e.getMessage());
             return false;
+        }
+    }
+
+    @Override
+    public List<EmergencyEntity> findAll() {
+        String sql = "SELECT * FROM emergency ORDER BY id";
+        try(Connection con = sql2o.open()) {
+            return con.createQuery(sql).executeAndFetch(EmergencyEntity.class);
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Integer getActiveTasksByIdEmergency(Long id) {
+        String sql = "SELECT getActiveTasksByIdEmergency(:id)";
+        try(Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeScalar(Integer.class);
+        } catch(Exception e) {
+            System.out.println(e.getMessage());
+            return null;
         }
     }
 }

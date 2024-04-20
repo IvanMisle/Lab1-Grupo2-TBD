@@ -5,6 +5,8 @@ import Lab1_TBD.services.EmergencyService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @CrossOrigin
 @RestController
 public class EmergencyController {
@@ -24,6 +26,18 @@ public class EmergencyController {
     public ResponseEntity<EmergencyEntity> getEmergencyById(@PathVariable Long id) {
         EmergencyEntity newEmergency = emergencyService.getEmergencyById(id);
         return ResponseEntity.ok(newEmergency);
+    }
+
+    @GetMapping("/emergencies")
+    public ResponseEntity<List<EmergencyEntity>> getAllEmergencies() {
+        List<EmergencyEntity> emergencies = emergencyService.getAll();
+        return ResponseEntity.ok(emergencies);
+    }
+
+    @GetMapping("/emergencies/getActiveTasksCount/{id}")
+    public ResponseEntity<Integer> getActiveTasksCount(@PathVariable Long id) {
+        Integer activeTasksCount = emergencyService.getActiveTasksCount(id);
+        return ResponseEntity.ok(activeTasksCount);
     }
 
     @PutMapping("/emergencies/{id}")
