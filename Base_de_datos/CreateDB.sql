@@ -83,3 +83,14 @@ CREATE TABLE Task_Ability (
     FOREIGN KEY (id_eme_ability) REFERENCES eme_ability(id),
     FOREIGN KEY (id_task) REFERENCES task(id)
 );
+
+-- Crear tabla log_table
+CREATE TABLE log_table (
+    id SERIAL PRIMARY KEY,
+    table_c VARCHAR(255) NOT NULL,
+    action_c VARCHAR(10) NOT NULL,
+    user_c VARCHAR(255) NOT NULL,
+    date_c date NOT NULL,
+	time_c time NOT NULL,
+    query_c TEXT NOT NULL
+);
