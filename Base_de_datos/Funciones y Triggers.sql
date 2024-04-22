@@ -59,5 +59,17 @@ BEGIN
     END LOOP; 
 END $$;
 
+--Funcion del requerimiento numero 17
+CREATE OR REPLACE FUNCTION getQueryReport() 
+RETURNS TABLE("cantidad de queries" BIGINT, usuario VARCHAR, query TEXT[]) AS $$
+BEGIN 
+    RETURN QUERY 
+    SELECT COUNT(lt.id), lt.user_c, array_agg(query_c)
+    FROM log_table lt
+    GROUP BY lt.user_c
+    ORDER BY COUNT(lt.id) DESC;
+END;
+$$ LANGUAGE plpgsql;
+
 
 
