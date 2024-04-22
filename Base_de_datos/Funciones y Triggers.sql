@@ -59,20 +59,5 @@ BEGIN
     END LOOP; 
 END $$;
 
-----------------------------------------------------------------------------------------------
 
 
-SELECT
-    v.name AS volunteer_name,
-    a.name AS ability_name,
-    r.level_ranking AS ranking_value
-FROM Volunteer v
-CROSS JOIN Ability a
-LEFT JOIN Vol_Ability va
-    ON v.id = va.id_volunteer
-    AND a.id = va.id_ability
-LEFT JOIN Ranking r
-    ON v.id = r.id_volunteer
-    AND a.id = r.id_task
-WHERE r.level_ranking IS NOT NULL
-ORDER BY a.name, r.level_ranking DESC;
