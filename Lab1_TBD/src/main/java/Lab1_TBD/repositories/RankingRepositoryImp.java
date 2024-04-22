@@ -88,7 +88,7 @@ public class RankingRepositoryImp implements RankingRepository {
 
     @Override
     public Integer getMaxId() {
-        String sql = "SELECT id FROM ranking r ORDER BY id LIMIT 1";
+        String sql = "SELECT id FROM ranking r ORDER BY id DESC LIMIT 1";
         try (Connection con = sql2o.open()){
             Integer value = con.createQuery(sql).executeScalar(Integer.class);
             if (value == null){

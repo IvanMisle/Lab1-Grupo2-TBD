@@ -59,16 +59,12 @@ public class RankingService {
             for (Integer id_ability : id_abilities){
                 if (volAbilityRepository.volHaveAbility(volunteerEntity.getId(), id_ability.longValue())){
                     level++;
-
                 }
-
             }
             maxId ++;
             RankingEntity rankingEntity = new RankingEntity(maxId.longValue(), id_task, id_volunteer, level);
             rankings.add(rankingRepository.save(rankingEntity));
-
         }
         return rankings;
-
     }
 }
