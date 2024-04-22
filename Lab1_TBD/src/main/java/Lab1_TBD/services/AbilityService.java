@@ -31,4 +31,9 @@ public class AbilityService {
     public AbilityEntity update(AbilityEntity abilityEntity) {
         return abilityRepository.update(abilityEntity);
     }
+
+    public List<Integer> getAbilitybyIdtask(Long id){
+        return abilityRepository.getAbilitybyIdtask(id);
+    }
+
 }

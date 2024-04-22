@@ -15,4 +15,7 @@ public interface AbilityRepository {
     boolean deleteById(Long id);
 
     AbilityEntity update(AbilityEntity abilityEntity);
+
+    List<Integer> getAbilitybyIdtask(Long id);
+
 }

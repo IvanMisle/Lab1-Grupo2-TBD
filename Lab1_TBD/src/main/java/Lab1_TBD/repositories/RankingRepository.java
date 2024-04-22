@@ -10,4 +10,5 @@ public interface RankingRepository {
     RankingEntity findById(Long id);
     boolean deleteById(Long id);
     RankingEntity update(RankingEntity rankingEntity);
+    Integer getMaxId();
 }

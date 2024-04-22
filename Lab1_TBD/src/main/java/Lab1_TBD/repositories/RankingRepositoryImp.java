@@ -15,7 +15,7 @@ public class RankingRepositoryImp implements RankingRepository {
 
     @Override
     public RankingEntity save(RankingEntity rankingEntity) {
-        String sql = "INSERT INTO ranking VALUES (:id, :level_ranking, :id_task, :id_volunteer)";
+        String sql = "INSERT INTO ranking VALUES (:id, :id_task, :id_volunteer, :level_ranking)";
         try (Connection con = sql2o.open()) {
             con.createQuery(sql).addParameter("id", rankingEntity.getId())
                     .addParameter("level_ranking", rankingEntity.getLevel_ranking())
@@ -80,6 +80,21 @@ public class RankingRepositoryImp implements RankingRepository {
                     .addParameter("id", rankingEntity.getId())
                     .executeUpdate();
             return rankingEntity;
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
+
+    @Override
+    public Integer getMaxId() {
+        String sql = "SELECT id FROM ranking r ORDER BY id LIMIT 1";
+        try (Connection con = sql2o.open()){
+            Integer value = con.createQuery(sql).executeScalar(Integer.class);
+            if (value == null){
+                return 0;
+            }
+            return value;
         } catch (Exception e) {
             System.out.println(e.getMessage());
             return null;

@@ -80,4 +80,21 @@ public class AbilityRepositoryImp implements AbilityRepository {
             return null;
         }
     }
+
+    @Override
+    public List<Integer> getAbilitybyIdtask(Long id) {
+        String sql = "SELECT ea.id_ability\n" +
+                "FROM task_ability ta\n" +
+                "INNER JOIN eme_ability ea ON ea.id = ta.id_eme_ability\n" +
+                "WHERE ta.id_task = :id";
+        try (Connection con = sql2o.open()) {
+            return con.createQuery(sql)
+                    .addParameter("id", id)
+                    .executeAndFetch(Integer.class);
+
+        } catch (Exception e) {
+            System.out.println(e.getMessage());
+            return null;
+        }
+    }
 }

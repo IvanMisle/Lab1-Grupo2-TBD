@@ -6,6 +6,8 @@ import org.springframework.stereotype.Repository;
 import org.sql2o.Connection;
 import org.sql2o.Sql2o;
 
+import java.util.List;
+
 @Repository
 public class VolAbilityRepositoryImp implements VolAbilityRepository{
 
@@ -65,5 +67,25 @@ public class VolAbilityRepositoryImp implements VolAbilityRepository{
             System.out.println(e.getMessage());
             return false;
         }
+    }
+
+    @Override
+    public boolean volHaveAbility(Long id_volunteer, Long id_ability){
+        String sql = "SELECT id FROM vol_ability WHERE id_ability = :id_ability AND id_volunteer = :id_volunteer";
+        try (Connection con = sql2o.open()){
+            Integer id = con.createQuery(sql)
+                    .addParameter("id_ability", id_ability)
+                    .addParameter("id_volunteer", id_volunteer)
+                    .executeAndFetchFirst(Integer.class);
+            if (id == null){
+                return false;
+
+            }
+            return true;
+        } catch(Exception e) {
+        System.out.println(e.getMessage());
+        return false;
+    }
+
     }
 }

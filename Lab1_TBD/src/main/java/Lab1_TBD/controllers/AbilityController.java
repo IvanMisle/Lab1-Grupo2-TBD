@@ -29,6 +29,13 @@ public class AbilityController {
         return ResponseEntity.ok(ability);
     }
 
+    @GetMapping("/getAbilitybyIdtask/{id}")
+    public ResponseEntity<List<Integer>> getAbilityIdtask(@PathVariable Long id){
+        List<Integer> abilities = abilityService.getAbilitybyIdtask(id);
+        return ResponseEntity.ok(abilities);
+    }
+
+
     @PostMapping("/")
     public ResponseEntity<AbilityEntity> addAbility(@RequestBody AbilityEntity ability) {
         AbilityEntity newAbilityEntity = abilityService.save(ability);
@@ -45,4 +52,6 @@ public class AbilityController {
     public boolean deleteAbility(@PathVariable Long id) {
         return abilityService.delete(id);
     }
+
+
 }

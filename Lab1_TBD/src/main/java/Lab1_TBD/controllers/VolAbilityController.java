@@ -27,6 +27,14 @@ public class VolAbilityController {
         return ResponseEntity.ok(newVolAbility);
     }
 
+    @GetMapping("/volHaveAbility/{id_volunteer}/{id_ability}")
+    public boolean volHaveAbility(@PathVariable Long id_volunteer, @PathVariable Long id_ability){
+        return volAbilityService.volHaveAbility(id_volunteer,id_ability);
+    }
+
+
+
+
     @PutMapping("/volAbility")
     public ResponseEntity<VolAbilityEntity> updateVolAbility(@RequestBody VolAbilityEntity volAbility) {
         VolAbilityEntity newVolAbility = volAbilityService.updateVolAbility(volAbility);

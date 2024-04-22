@@ -29,4 +29,8 @@ public class VolAbilityService {
     public VolAbilityEntity updateVolAbility(VolAbilityEntity volAbility){
         return volAbilityRepository.update(volAbility);
     }
+
+    public boolean volHaveAbility(Long id_volunteer, Long id_ability){
+        return volAbilityRepository.volHaveAbility(id_volunteer, id_ability);
+    }
 }

@@ -32,6 +32,13 @@ public class RankingController {
         RankingEntity newRanking = rankingService.save(ranking);
         return ResponseEntity.ok(newRanking);
     }
+    @PostMapping("/addRankingsByIdTask/{id_task}")
+    public ResponseEntity<List<RankingEntity>> addRankingsByIdTask(@PathVariable Long id_task){
+        List<RankingEntity> newRanking = rankingService.addRankingsByIdTask(id_task);
+        return ResponseEntity.ok(newRanking);
+    }
+
+
 
     @PutMapping("/")
     public ResponseEntity<RankingEntity> updateRanking(@RequestBody RankingEntity ranking) {
